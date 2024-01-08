@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Your website description">
+  <meta name="keywords" content="your,keywords,here">
+  <meta name="author" content="Your Name">
+  <link rel="stylesheet" href="/styles/register.css">
+  <link rel="stylesheet" href="/styles/style.css">
+</head>
+<body>
+<div class="container">
+  <div class="navbar">
+    <div class="logo">
+      <span class="N">N</span>
+      <span class="E">E</span>
+      <span class="O">O</span>
+      <span class="M">M</span>
+    </div>
+    <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="#">Categories</a>
+        <a href="#">About</a>
+        <a href="/register" class="active">Sign-In</a>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="register-form">
+      
+<form id="registrationForm" action="/api/v1/users/register" method="post" enctype="multipart/form-data">
+    <h3>Create an account</h3>
+<div class="avatar-container">
+
+<input class="files" type="file" hidden name="avatar" id="avatarInput" accept="image/*" onchange="displayImagePreview('avatarInput', 'avatarPreview')">
+<div class="avatar" id="avatarPreview"></div>
+<label for="avatarInput">Choose Avatar</label>
+</div>
+
+<div class="cover-image-container">
+
+<input class="files" type="file" hidden name="coverImage" id="coverImageInput" accept="image/*" onchange="displayImagePreview('coverImageInput', 'coverImagePreview')">
+            
+<div class="cover-image field" id="coverImagePreview"></div>
+            <label for="coverImageInput">Choose Cover Image</label>
+</div>
+
+<input type="text" name="fullName" placeholder="Full Name" id="fullName" required>
+<input type="text" name="username"  placeholder="Username" id="username" required>
+<input type="email" name="email" placeholder="Email" id="email" required>
+<input type="password" name=""name="password" placeholder="Password" id="password" required>
+
+<button type="submit">Register</button>
+  </form>
+<div class="">
+  <p>already an account: <a href="/login">Login</a></p>
+</div>
+    
+  </div>
+    
+  </div>
+    
+</div>
+
+  <script src="/scripts/register.js"></script>
+</body>
+</html>

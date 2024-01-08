@@ -1,0 +1,87 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.register-form {
+	width: 100%;
+	min-height: 400px;
+	background-color: #f2f2f2;
+	padding: 30px 20px;
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+	border-radius: 5px;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+form {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+        }
+
+        input {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .avatar-container,
+        .cover-image-container {
+            text-align: center;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					flex-direction: column;
+        }
+
+        .avatar,
+        .cover-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-bottom: 10px;
+		background-position: center;
+		background-size: cover;
+		background-origin: content-box;
+		background-repeat: no-repeat;
+		background-image: url('https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png');
+        }
+.cover-image {
+	width: 100%  !important;
+	height: 120px  !important;
+	border-radius: 5px !important;
+	background-image: url('https://images.pexels.com/photos/267399/pexels-photo-267399.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
+}
+        #avatarInput,
+        #coverImageInput {
+            display: none;
+        }
+
+        label[for="avatarInput"],
+        label[for="coverImageInput"] {
+            cursor: pointer;
+            color: #007BFF;
+            text-decoration: underline;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+				}
