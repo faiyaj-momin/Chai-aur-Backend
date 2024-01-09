@@ -1,7 +1,7 @@
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiError } from "../utils/ApiError.js";
 import { User } from "../models/user.model.js";
-import { uploadOnCloudinary } from "../utils/cloudinary.js";
+import { uploadOnCloudinary, deleteOnCloudinary } from "../utils/cloudinary.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 
 const generateAccessAndRefereshTokens = async (userId) => {
@@ -67,8 +67,12 @@ const registerUser = asyncHandler(async (req, res) => {
     throw new ApiError(400, "Avatar file is required");
   }
 
-  const avatar = await uploadOnCloudinary(avatarLocalPath);
-  const coverImage = await uploadOnCloudinary(coverImageLocalPath);
+  const AvatarPublicId = `user_${username.toLowerCase()}_avatar`;
+  
+  const CoverImagePublicId = `user_${username.toLowerCase()}_cover_image`;
+
+  const avatar = await uploadOnCloudinary(avatarLocalPath, AvatarPublicId);
+  const coverImage = await uploadOnCloudinary(coverImageLocalPath, CoverImagePublicId);
 
   if (!avatar) {
     throw new ApiError(400, "Avatar file is required");
@@ -87,6 +91,8 @@ const registerUser = asyncHandler(async (req, res) => {
     "-password -refreshToken",
   );
 
+  console.log(avatar, coverImage);
+  
   if (!createdUser) {
     throw new ApiError(500, "Something went wrong while registering the user");
   }
@@ -284,7 +290,8 @@ const updateAccountDetails = asyncHandler(async (req, res) => {
 
 const updateUserAvatar = asyncHandler(async (req, res) => {
   const avatarLocalPath = req.file?.path;
-
+  const { publicId } = req.params;
+  
   if (!avatarLocalPath) {
     throw new ApiError(400, "Avatar file is missing");
   }
@@ -306,6 +313,11 @@ const updateUserAvatar = asyncHandler(async (req, res) => {
     },
     { new: true },
   ).select("-password");
+
+  // TODO: delete old image - assignment Completed
+  const oldPublidId = `user_${publicId}_avatar`
+  const deleted = await deleteOnCloudinary(oldPublidId)
+  console.log(deleted)
 
   return res
     .status(200)
@@ -341,6 +353,8 @@ const updateUserCoverImage = asyncHandler(async (req, res) => {
     .status(200)
     .json(new ApiResponse(200, user, "Cover image updated successfully"));
 });
+
+
 
 const getUserChannelProfile = asyncHandler(async (req, res) => {
   const { username } = req.params;
