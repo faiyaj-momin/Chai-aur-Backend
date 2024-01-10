@@ -17,21 +17,15 @@ app.set("view engine", "ejs")
 
 //routes import
 import userRouter from './routes/user.routes.js'
+import playlistRouter from './routes/playlist.routes.js'
 
 
 //routes declaration
 app.use('/api/v1/users', userRouter)
-app.use("/api/v1/users", userRouter)
-app.get("/", (req, res) => {
-    res.render('index')
-})
-app.get("/register", (req, res) => {
-    res.render('register')
-    })
-app.get("/createpost", (req, res) => {
-    res.render('create_post')
-    })
+app.use('/api/v1/playlists', playlistRouter)
+
 
 // http://localhost:8000/api/v1/users/register
+// http://localhost:8000/api/v1/playlists
 
 export { app }
